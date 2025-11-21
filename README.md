@@ -13,7 +13,6 @@ Website cá nhân giới thiệu về bản thân và các dự án.
 - React + Vite
 - TypeScript
 - TailwindCSS
-- Google Gemini AI
 
 ## Cài đặt
 
