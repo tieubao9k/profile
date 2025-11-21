@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth scroll-pt-24 dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiên Bảo (Satoru) - Code Dạo</title>
+
+    <!-- Meta SEO -->
+    <meta name="description" content="Thiên Bảo (Satoru) - Lập trình viên đam mê code dạo, chia sẻ kiến thức và dự án công nghệ." />
+    <meta name="author" content="Thiên Bảo (Satoru)" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Thiên Bảo (Satoru) - Code Dạo" />
+    <meta property="og:description" content="Lập trình viên đam mê code dạo, chia sẻ kiến thức và dự án công nghệ." />
+    <meta property="og:image" content="https://files.catbox.moe/oin5bw.jpg" />
+    <meta property="og:url" content="https://satoru.site" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Thiên Bảo (Satoru) - Code Dạo" />
+    <meta name="twitter:description" content="Lập trình viên đam mê code dạo, chia sẻ kiến thức và dự án công nghệ." />
+    <meta name="twitter:image" content="https://files.catbox.moe/oin5bw.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Quicksand', 'sans-serif'],
+            },
+            colors: {
+              primary: {
+                50: '#fff7ed',
+                100: '#ffedd5',
+                200: '#fed7aa',
+                300: '#fdba74',
+                400: '#fb923c',
+                500: '#ff9000', // THE Orange
+                600: '#ea580c',
+                700: '#c2410c',
+                800: '#9a3412',
+                900: '#7c2d12',
+                950: '#431407',
+              },
+              dark: {
+                bg: '#000000', // True Black
+                card: '#1b1b1b', // Dark Grey
+                border: '#272727', // Border Grey
+              }
+            },
+            animation: {
+              'spin-slow': 'spin 3s linear infinite',
+              'float': 'float 15s linear infinite',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom scrollbar for code blocks or chat */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #525252;
+        border-radius: 4px;
+      }
+      /* Force dark scrollbar style */
+      ::-webkit-scrollbar-thumb {
+        background: #ff9000;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #fb923c;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-[#000000] text-slate-200 antialiased selection:bg-primary-500 selection:text-black transition-colors duration-300">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
