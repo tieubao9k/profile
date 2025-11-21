@@ -21,11 +21,12 @@ const Skills: React.FC = () => {
             </span>
             <div className="flex flex-wrap gap-2">
               {skillGroup.items.map((item) => (
-                <span 
-                  key={item}
-                  className="px-4 py-1.5 text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-[#272727] border border-slate-200 dark:border-[#3f3f3f] rounded-[4px] hover:bg-primary-500 hover:text-black hover:border-primary-600 transition-all cursor-default hover:shadow-md"
+                <span
+                  key={item.name}
+                  className="px-3 py-1.5 text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-[#272727] border border-slate-200 dark:border-[#3f3f3f] rounded-[4px] hover:bg-primary-500 hover:text-black hover:border-primary-600 transition-all cursor-default hover:shadow-md flex items-center gap-2"
                 >
-                  {item}
+                  <img src={item.icon} alt={item.name} className="w-4 h-4" />
+                  {item.name}
                 </span>
               ))}
             </div>

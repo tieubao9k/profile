@@ -7,6 +7,8 @@ import Projects from './components/Projects';
 import Footer from './components/Footer';
 import AiChatbot from './components/AiChatbot';
 import Terminal from './components/Terminal';
+import AnimateOnScroll from './components/AnimateOnScroll';
+import MusicPlayer from './components/MusicPlayer';
 
 const FloatingSymbol = ({ symbol, delay, left }: { symbol: string, delay: string, left: string }) => (
   <div 
@@ -78,14 +80,23 @@ const App: React.FC = () => {
       <main className="max-w-2xl mx-auto px-5 pt-24 pb-12 sm:px-8 relative z-0">
         <Hero />
         <div className="space-y-20">
-          <Skills />
-          <Experience />
-          <Projects />
+          <AnimateOnScroll animation="fadeUp">
+            <Skills />
+          </AnimateOnScroll>
+          <AnimateOnScroll animation="fadeUp" delay={100}>
+            <Experience />
+          </AnimateOnScroll>
+          <AnimateOnScroll animation="fadeUp" delay={200}>
+            <Projects />
+          </AnimateOnScroll>
         </div>
-        <Terminal />
+        <AnimateOnScroll animation="scale" delay={100}>
+          <Terminal />
+        </AnimateOnScroll>
       </main>
       <Footer />
       <AiChatbot />
+      <MusicPlayer />
     </div>
   );
 };

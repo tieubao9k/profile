@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { PROFILE } from '../constants';
-import { Github, MessageCircle, Globe, Mail, Phone, Zap } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { PROFILE, PROJECTS } from '../constants';
+import { Github, MessageCircle, Globe, Mail, Phone, Zap, Code, FolderGit2, Coffee } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const roles = [
@@ -15,6 +15,13 @@ const Hero: React.FC = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
+
+  // Stats counter
+  const [stats, setStats] = useState({ projects: 0, experience: 0, coffees: 0 });
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const targetStats = { projects: PROJECTS.length, experience: 2, coffees: 999 };
 
   useEffect(() => {
     const handleTyping = () => {
@@ -39,6 +46,36 @@ const Hero: React.FC = () => {
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, roles, currentRoleIndex, typingSpeed]);
+
+  // Stats counter animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const duration = 2000;
+          const steps = 60;
+          const interval = duration / steps;
+
+          let step = 0;
+          const timer = setInterval(() => {
+            step++;
+            const progress = step / steps;
+            setStats({
+              projects: Math.round(targetStats.projects * progress),
+              experience: Math.round(targetStats.experience * progress),
+              coffees: Math.round(targetStats.coffees * progress),
+            });
+            if (step >= steps) clearInterval(timer);
+          }, interval);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, [hasAnimated]);
 
   return (
     <section className="flex flex-col items-center text-center mb-16 mt-8 relative">
@@ -94,7 +131,7 @@ const Hero: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex items-center justify-center gap-3 flex-wrap px-4">
+      <div className="flex items-center justify-center gap-3 flex-wrap px-4 mb-8">
         {[
           { icon: Github, href: PROFILE.github, label: "Github" },
           { icon: Mail, href: `mailto:${PROFILE.email}`, label: "Email" },
@@ -102,16 +139,31 @@ const Hero: React.FC = () => {
           { icon: MessageCircle, href: PROFILE.messenger, label: "Messenger" },
           { icon: Globe, href: PROFILE.website, label: "Website" },
         ].map((item, index) => (
-          <a 
+          <a
             key={index}
-            href={item.href} 
-            target="_blank" 
-            rel="noreferrer" 
+            href={item.href}
+            target="_blank"
+            rel="noreferrer"
             className="p-3 text-slate-500 dark:text-slate-400 bg-white dark:bg-[#1b1b1b] shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-[4px] transition-all border border-slate-200 dark:border-[#272727] hover:bg-primary-500 hover:text-black dark:hover:bg-primary-500 dark:hover:text-black group"
             title={item.label}
           >
             <item.icon className="w-5 h-5 transition-transform" />
           </a>
+        ))}
+      </div>
+
+      {/* Stats Counter */}
+      <div ref={statsRef} className="grid grid-cols-3 gap-4 w-full max-w-md">
+        {[
+          { icon: FolderGit2, value: stats.projects, label: "Projects" },
+          { icon: Code, value: stats.experience, label: "Năm KN" },
+          { icon: Coffee, value: stats.coffees, label: "Coffees" },
+        ].map((stat, index) => (
+          <div key={index} className="bg-white/60 dark:bg-[#1b1b1b]/80 backdrop-blur-sm p-4 rounded-[4px] border border-slate-200 dark:border-[#272727] hover:-translate-y-1 transition-transform">
+            <stat.icon className="w-5 h-5 text-primary-500 mx-auto mb-2" />
+            <p className="text-2xl font-bold text-slate-800 dark:text-white">{stat.value}+</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">{stat.label}</p>
+          </div>
         ))}
       </div>
     </section>

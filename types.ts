@@ -17,9 +17,14 @@ export interface Experience {
   description: string[];
 }
 
+export interface SkillItem {
+  name: string;
+  icon: string;
+}
+
 export interface Skill {
   category: string;
-  items: string[];
+  items: SkillItem[];
 }
 
 export interface ChatMessage {
